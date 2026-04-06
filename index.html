@@ -1,23 +1,407 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+  <!-- Schema.org 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Car",
+    "name": "제네시스 G80 중고차 리스 전문 플랫폼",
+    "description": "2026년형 제네시스 G80 중고차 리스 가격 비교 및 견적 서비스. 합리적인 가격으로 럭셔리 세단을 소유할 수 있는 방법.",
+    "brand": {
+      "@type": "Brand",
+      "name": "제네시스"
+    },
+    "model": "G80",
+    "vehicleConfiguration": "2.5T, 3.5T, Prestige, Luxury, Sports Package",
+    "offers": {
+      "@type": "OfferCatalog",
+      "name": "G80 중고차 리스 상품",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"G80 2.5T 중고 리스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"G80 3.5T 중고 리스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"G80 리스 승계 서비스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"G80 중고차 장기 렌트 비교"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"초기 비용 없는 G80 리스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"개인/법인 리스 견적"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"리스 종료 후 구매/반납 가이드"}}
+      ]
+    }
+  }
+  </script>
+
+  <link rel="canonical" href="https://www.example.com/g80-used-car-lease">
+
+  <style>
+    /* 폰트 설정 및 기본 스타일 */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+    body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.8; background-color: #f8f8f8; }
+    header { background-color: #000; color: #fff; text-align: center; padding: 40px 15px; border-bottom: 5px solid #D1B26F; }
+    header h1 { margin: 0; font-size: 2.5em; font-weight: 700; }
+    header p { margin-top: 10px; font-size: 1.1em; font-weight: 300; }
+    section { max-width: 900px; margin: 40px auto; padding: 0 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    h2 { font-size: 2em; color: #2c3e50; border-bottom: 2px solid #D1B26F; padding-bottom: 10px; margin-top: 30px; }
+    h3 { font-size: 1.5em; color: #34495e; margin-top: 25px; }
+
+    /* CTA 및 버튼 */
+    .cta-button { display: inline-block; background: #D1B26F; color: #fff; padding: 15px 30px; border-radius: 5px; text-decoration: none; font-size: 1.1em; font-weight: bold; transition: background 0.3s ease; margin-top: 20px; }
+    .cta-button:hover { background: #b09559; }
+
+    /* 이미지 스타일 */
+    .full-width-image { width: 100%; height: auto; margin: 30px 0; border-radius: 8px; object-fit: cover; }
+
+    /* 테이블 스타일 */
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95em; }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+    th { background-color: #f2f2f2; font-weight: 700; color: #333; }
+
+    /* 섹션 레이아웃 (색상 강조) */
+    .section-highlight { background-color: #f5f5f5; border-radius: 8px; padding: 30px; margin: 30px 0; }
+    .section-highlight h3 { color: #D1B26F; }
+
+    /* FAQ 스타일 */
+    .faq-item { border-bottom: 1px solid #eee; padding: 15px 0; }
+    .faq-question { font-weight: 700; color: #34495e; cursor: pointer; position: relative; }
+    .faq-question::after { content: '+'; position: absolute; right: 0; top: 0; color: #D1B26F; }
+    .faq-answer { display: none; margin-top: 10px; padding-left: 15px; border-left: 3px solid #eee; font-size: 0.95em; }
+    .faq-item.active .faq-question::after { content: '-'; }
+    .faq-item.active .faq-answer { display: block; }
+
+    /* 폼 스타일 */
+    form { background-color: #fcfcfc; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+    input[type="text"], input[type="email"], input[type="tel"], textarea { width: calc(100% - 20px); padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    input[type="submit"] { background-color: #D1B26F; color: white; border: none; padding: 12px 20px; cursor: pointer; font-size: 1em; border-radius: 4px; width: 100%; transition: background 0.3s ease; }
+    input[type="submit"]:hover { background-color: #b09559; }
+
+    /* 그래프 스타일 (임의 CSS) */
+    .graph-container { text-align: center; margin-bottom: 30px; }
+    .graph-container img { max-width: 100%; height: auto; border-radius: 8px; }
+
+    /* 키워드 링크 섹션 */
+    .keyword-links { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 20px; }
+    .keyword-links a { display: block; background-color: #eee; text-align: center; padding: 10px; border-radius: 5px; text-decoration: none; color: #333; transition: background 0.3s; }
+    .keyword-links a:hover { background-color: #D1B26F; color: #fff; }
+
+    /* 외부 링크 강조 */
+    .external-reference a { color: #0078D7; text-decoration: underline; }
+
+    /* 미디어 쿼리 (모바일 반응형) */
+    @media (max-width: 600px) {
+      header h1 { font-size: 2em; }
+      h2 { font-size: 1.8em; }
+      section { padding: 0 15px; }
+      .keyword-links { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 섹션: 메인 키워드 H1 -->
+  <header>
+    <h1>제네시스 G80 중고차 리스 전문 플랫폼</h1>
+    <p>2026년 G80 중고차 리스 가격 비교, 초기 비용 0원 상품, 최저가 견적 서비스</p>
+  </header>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <main>
+    <!-- 섹션 1: 자동완성 및 연관 키워드 반영 (SEO 최적화) -->
+    <section>
+      <h2>G80 리스 핵심 키워드 검색 결과 분석</h2>
+      <p>많은 고객님들이 궁금해하는 G80 중고차 리스와 관련된 주요 자동완성 및 연관 검색어를 정리했습니다. 해당 키워드를 통해 G80 중고 리스의 장점, 단점, 가격 비교, 싼곳, 추천 업체 순위 등 핵심 정보를 빠르게 파악할 수 있습니다.</p>
+      <div class="keyword-links">
+        <a href="#g80_price_comparison">G80 중고차 리스 가격</a>
+        <a href="#g80_pros_cons">G80 리스 장단점</a>
+        <a href="#g80_loan_vs_lease">G80 리스 vs 할부 차이점</a>
+        <a href="#g80_recommendation">G80 리스 추천 업체</a>
+        <a href="#g80_cheap">G80 리스 저렴한곳</a>
+        <a href="#g80_review">G80 중고차 리스 후기</a>
+        <a href="#g80_init_cost">G80 리스 초기 비용</a>
+        <a href="#g80_options">G80 옵션 비교</a>
+        <a href="#g80_model_compare">G80 2.5T vs 3.5T 비교</a>
+        <a href="#g80_gv80_compare">G80 vs GV80 리스</a>
+        <a href="#g80_ev">G80 일렉트리파이드 리스</a>
+      </div>
+    </section>
+
+    <!-- 섹션 2: G80 중고차 리스의 장점 (Why G80?) -->
+    <section class="section-highlight" id="g80_pros_cons">
+      <h2>제네시스 G80 중고차 리스의 장점과 단점 (장단점 분석)</h2>
+      <p>럭셔리 세단의 대명사 G80은 제네시스의 플래그십 모델로 자리매김하고 있습니다. 하지만 신차 가격이 부담스러운 소비자들에게 중고차 리스는 매우 매력적인 대안이 될 수 있습니다. 특히 2026년 현재 시장 상황에서 G80 중고차 리스가 왜 인기를 끄는지 장점과 단점을 자세히 분석해봅니다.</p>
+
+      <h3>G80 중고차 리스의 주요 장점</h3>
+      <ul>
+        <li><strong>경제성:</strong> G80 신차 가격 대비 월 납입금이 저렴합니다. 중고차를 활용하므로 감가상각이 이미 반영되어 신차 리스 대비 월 납입료가 현저히 낮습니다.</li>
+        <li><strong>초기 비용 절감:</strong> 보증금이나 선납금이 없는 초기 비용 0원 상품을 이용하면 목돈 지출 없이 G80을 이용할 수 있습니다. 이는 특히 사업자나 사회 초년생에게 큰 장점입니다.</li>
+        <li><strong>절세 효과 (법인/개인사업자):</strong> 리스료 전액을 손비 처리할 수 있어 법인세 및 종합소득세 절감 효과가 있습니다. G80 같은 고가 차량일수록 절세 규모가 큽니다.</li>
+        <li><strong>신차급 컨디션:</strong> 대부분의 중고 리스 차량은 약정 기간이 짧고 주행거리가 적어 신차와 같은 품질을 유지합니다. 꼼꼼한 심사를 거친 차량이기에 품질에 대한 불안감이 적습니다.</li>
+        <li><strong>다양한 모델 선택:</strong> G80 2.5T, 3.5T는 물론, Prestige, Sports Package 등 다양한 옵션을 저렴하게 이용할 수 있습니다. G80 일렉트리파이드(EV) 모델의 중고 리스도 인기를 얻고 있습니다.</li>
+      </ul>
+
+      <h3>G80 중고차 리스의 단점 및 주의사항</h3>
+      <ul>
+        <li><strong>주행거리 제한:</strong> 리스 계약 시 정해진 연간 주행거리(보통 1만~3만km)를 초과하면 추가 비용을 지불해야 합니다. 장거리 운행이 잦은 분들은 신중하게 선택해야 합니다.</li>
+        <li><strong>명의 문제:</strong> 차량 명의가 리스사로 되어 있어 보험 경력이 단절되거나, 차량을 내 마음대로 처분하기 어렵습니다. 리스 계약 종료 후 반납 또는 인수를 선택해야 합니다.</li>
+        <li><strong>중도 해지 수수료:</strong> 리스 계약 기간 중 해지 시 위약금이 발생합니다. 갑작스러운 상황 변화에 유연성이 떨어질 수 있습니다.</li>
+      </ul>
+    </section>
+
+    <!-- 섹션 3: 가격 분석 및 모델별 비교 (H2, H3 및 표 활용) -->
+    <section id="g80_price_comparison">
+      <h2>G80 중고차 리스 가격표 및 견적 분석 (2026년 기준)</h2>
+      <p>G80 중고차 리스 가격은 모델의 연식, 주행거리, 옵션, 리스 기간(2년, 3년, 4년), 보증금/선납금 여부, 잔존가치 설정에 따라 달라집니다. 2026년도 시장 평균 데이터와 실제 내돈내산 후기를 바탕으로 G80 중고 리스 예상 비용을 산출해봅니다.</p>
+
+      <h3>G80 중고차 모델별 평균 리스료 비교</h3>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>모델 (연식/주행거리)</th>
+            <th>신차 가격 (대략)</th>
+            <th>중고 리스 월 납입금 (36개월 기준)</th>
+            <th>특징</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>G80 2.5T 럭셔리 (2023년형/3만km)</td>
+            <td>5,800만원</td>
+            <td>50만원대 후반 ~ 60만원대 초반</td>
+            <td>가장 인기 많은 기본 모델. 가성비 우수.</td>
+          </tr>
+          <tr>
+            <td>G80 3.5T 스포츠 (2022년형/4만km)</td>
+            <td>7,500만원</td>
+            <td>70만원대 초반 ~ 80만원대 초반</td>
+            <td>강력한 주행 성능. 스포츠 패키지 선호 고객.</td>
+          </tr>
+          <tr>
+            <td>G80 2.5T Prestige (2024년형/1만km)</td>
+            <td>6,500만원</td>
+            <td>60만원대 후반 ~ 70만원대 중반</td>
+            <td>신차급 컨디션 유지. 높은 잔존가치.</td>
+          </tr>
+          <tr>
+            <td>G80 일렉트리파이드 (2023년형/2만km)</td>
+            <td>8,000만원</td>
+            <td>80만원대 초반 ~ 90만원대 초반</td>
+            <td>친환경 모델. 전기차 보조금 혜택 만료 후 중고 리스 인기.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>※ 위 가격은 2026년 3월 기준의 평균 예상 금액이며, 금리 및 잔존가치에 따라 실제 견적은 달라질 수 있습니다. 정확한 견적은 전문가 상담을 통해 확인하세요.</p>
+
+      <h3>G80 중고 리스 vs 신차 리스 vs 중고 할부: 차이점 비교</h3>
+      <p id="g80_loan_vs_lease">G80을 구매하는 다양한 방법 중 리스와 할부는 가장 흔한 선택지입니다. 특히 중고차 리스는 신차 리스에 비해 초기 비용과 월 납입금이 저렴하다는 장점이 있습니다. 반면, 중고 할부는 차량을 완전히 소유할 수 있다는 장점이 있습니다. 아래 표를 통해 G80 중고차 리스와 다른 옵션의 차이점을 명확히 비교해봅니다.</p>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>G80 중고차 리스</th>
+            <th>G80 신차 리스</th>
+            <th>G80 중고차 할부</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>월 납입금</strong></td>
+            <td>가장 저렴함</td>
+            <td>중간 (신차 가격 기준)</td>
+            <td>가장 비쌈 (원금+이자)</td>
+          </tr>
+          <tr>
+            <td><strong>소유권</strong></td>
+            <td>리스사 (반납/인수 선택)</td>
+            <td>리스사 (반납/인수 선택)</td>
+            <td>개인 (차량 명의자)</td>
+          </tr>
+          <tr>
+            <td><strong>세금 혜택</strong></td>
+            <td>사업자 비용처리 가능</td>
+            <td>사업자 비용처리 가능</td>
+            <td>취등록세 납부 후 소유</td>
+          </tr>
+          <tr>
+            <td><strong>보험</strong></td>
+            <td>리스사 보험 가입 필수</td>
+            <td>리스사 보험 가입 필수</td>
+            <td>개인 보험 가입 (경력 인정)</td>
+          </tr>
+          <tr>
+            <td><strong>초기 비용</strong></td>
+            <td>보증금/선납금 선택 가능 (0원 상품 많음)</td>
+            <td>보증금/선납금 필수</td>
+            <td>취등록세, 선납금 필수</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>개인적인 운전 스타일이나 사업 규모에 따라 G80 중고 리스가 훌륭한 대안이 될 수 있습니다. 특히 G80 3.5T 같이 고배기량 모델을 고려한다면 신차 리스나 할부 대비 중고 리스의 가격 경쟁력이 압도적입니다.</p>
+    </section>
+
+    <!-- 섹션 4: G80 모델별 상세 분석 (2.5T vs 3.5T) -->
+    <section>
+      <h2>제네시스 G80 2.5T와 3.5T 중고차 리스 선택 가이드</h2>
+      <p>G80 모델 선택은 리스 가격뿐만 아니라 주행 만족도에 큰 영향을 미칩니다. 2.5T 가솔린 터보 모델과 3.5T 가솔린 트윈 터보 모델은 각각 다른 매력을 가지고 있습니다. G80 중고 리스 시 어떤 모델을 선택해야 할지 자세한 비교를 통해 알아보겠습니다.</p>
+
+      <h3>G80 2.5T 모델 분석 (가성비와 실용성)</h3>
+      <p>G80 2.5T는 304마력의 출력을 내며 일상 주행에 전혀 부족함 없는 성능을 제공합니다. 2026년 기준으로 중고 시장에서 가장 활발하게 거래되는 모델이며, 연비 효율성이 뛰어나고 리스료도 저렴합니다. G80 2.5T는 주로 출퇴근 용도나 가족용 세단으로 G80을 이용하려는 소비자들에게 추천됩니다. G80 2.5T 중고 리스 가격은 3.5T 대비 월 10만 원 이상 저렴할 수 있습니다.</p>
+
+      <h3>G80 3.5T 모델 분석 (고성능과 럭셔리)</h3>
+      <p>G80 3.5T는 380마력의 강력한 성능을 자랑합니다. 2023년형 이후 모델에는 사륜구동(AWD)이 적용된 경우가 많아 안정적인 주행감을 선사합니다. G80 3.5T 중고차 리스는 주로 주행의 재미를 중요시하거나, G80 스포츠 패키지처럼 화려한 외관 옵션을 선호하는 고객들에게 인기가 많습니다. 강력한 퍼포먼스 덕분에 G80 중고 리스 후회 없는 선택으로 꼽히기도 합니다.</p>
+
+      <div class="graph-container">
+        <!-- Pexels 이미지 삽입 (G80 관련 이미지) -->
+        <img src="https://images.pexels.com/photos/10121708/pexels-photo-10121708.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="G80 중고차 리스 이미지 (Pexels)" class="full-width-image">
+        <p>G80 2.5T vs 3.5T 선택 그래프 예시 (데이터는 2026년 가상)</p>
+        <!-- 실제 그래프 삽입 대신 텍스트로 대체하거나 차트 라이브러리 사용 가능 -->
+        <img src="https://via.placeholder.com/600x300?text=G80+리스+모델별+선호도+비교+차트" alt="G80 리스 모델별 선호도 비교 차트" style="margin-top: 15px;">
+      </div>
+    </section>
+
+    <!-- 섹션 5: AI 기반 맞춤 견적 및 진행 절차 (키워드: AI, Gemini, ChatGPT) -->
+    <section>
+      <h2>AI 기반 맞춤 견적 시스템: 내게 맞는 G80 중고차 리스 찾는 방법</h2>
+      <p>G80 중고 리스 견적을 받으려면 여러 업체를 비교해야 하는 번거로움이 있습니다. 최근에는 AI 기술(AI 에이전트, Gemini, ChatGPT 등)을 활용하여 개인의 운전 습관, 재정 상황, 선호 모델(G80, GV80 등), 원하는 옵션(Prestige, 스포츠 패키지) 등을 분석해 최적의 리스 상품을 추천하는 플랫폼이 등장했습니다.</p>
+
+      <h3>AI 견적 시스템의 장점</h3>
+      <ul>
+        <li><strong>맞춤형 추천:</strong> 고객의 데이터를 기반으로 G80 중고차 리스 시장의 수많은 상품 중 가장 유리한 조건(최저가, 저렴한곳 순위)을 찾아줍니다.</li>
+        <li><strong>빠른 비교:</strong> 여러 리스사(캐피탈사)의 견적을 한 번에 비교하여 시간 낭비를 줄입니다.</li>
+        <li><strong>정확한 분석:</strong> G80 리스 승계 상품의 장단점, 차량 상태, 예상 감가상각까지 정밀하게 분석하여 내돈내산 후기처럼 현실적인 정보를 제공합니다.</li>
+      </ul>
+      <p>이러한 AI 기반 시스템은 G80 중고 리스 업체를 추천받거나 리스 상품을 비교하는 데 있어 혁신적인 변화를 가져왔습니다. 저희 플랫폼 역시 이러한 AI 기술을 활용하여 G80 리스 싼곳을 찾아 고객에게 최적의 견적을 제공합니다.</p>
+
+      <h3>G80 중고차 리스 진행 절차</h3>
+      <ol>
+        <li><strong>상담 및 견적 요청:</strong> G80 모델, 연식, 리스 기간, 주행거리 등 원하는 조건을 전달합니다.</li>
+        <li><strong>차량 매칭:</strong> 중고 리스 시장에서 고객 조건에 맞는 G80 차량을 검색하고 최저가 견적을 비교합니다.</li>
+        <li><strong>심사 및 계약:</strong> 리스사 심사를 거쳐 계약을 진행합니다. G80 중고 리스는 신용 등급에 따라 승인 여부가 결정될 수 있습니다.</li>
+        <li><strong>차량 인도:</strong> 계약 완료 후 G80 차량을 인수받습니다.</li>
+      </ol>
+      <a href="#quote_form" class="cta-button">G80 중고차 리스 무료 견적 받기</a>
+    </section>
+
+    <!-- 섹션 6: FAQ (자주 묻는 질문) - 키워드 다수 삽입 -->
+    <section id="faq" class="faq">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-item">
+        <div class="faq-question">Q1. G80 중고차 리스 견적을 받으면 신용 점수에 영향이 있나요?</div>
+        <div class="faq-answer">A: G80 리스 견적을 단순히 조회하는 것만으로는 신용 점수에 큰 영향을 미치지 않습니다. 하지만 실제 리스 계약을 진행할 경우 신용 등급 하락이 발생할 수 있으므로 신중하게 결정해야 합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Q2. G80 중고 리스 기간 만료 후 인수와 반납 중 어떤 것이 유리한가요?</div>
+        <div class="faq-answer">A: 리스 종료 시점의 G80 중고차 시세와 잔존가치를 비교하여 결정합니다. G80의 인기가 높거나 잔존가치 설정이 낮았다면 인수가 유리하고, G80 시세가 떨어졌다면 반납이 유리할 수 있습니다. G80 리스 승계도 고려할 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Q3. G80 중고 리스 '내돈내산 후기'를 보면 싼곳 추천이 많은데, 비결이 뭔가요?</div>
+        <div class="faq-answer">A: G80 중고차 리스 '싼곳'을 찾으려면 여러 업체의 견적을 비교해야 합니다. 리스사마다 금리와 잔존가치 설정이 다르기 때문입니다. 특히 신규 가입 혜택, 할인 프로모션, 사은품(상품권, 지원금) 등을 활용하면 월 납입금을 더욱 저렴하게 만들 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Q4. G80 리스 계약 시 초기 비용을 0원으로 할 수 있나요?</div>
+        <div class="faq-answer">A: 네, 가능합니다. G80 중고 리스 상품 중에는 보증금 없이 진행되는 무보증 상품이 있습니다. 다만, 신용 점수가 높아야 하며 월 납입금이 소폭 상승할 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Q5. G80 중고 리스를 이용할 때 G80 vs GV80 vs G70 모델 중 무엇을 선택해야 할까요?</div>
+        <div class="faq-answer">A: G80은 세단, GV80은 SUV입니다. 주행 환경과 가족 구성원에 따라 선택이 달라집니다. G70은 G80보다 크기가 작고 스포티한 모델입니다. G80 중고 리스는 승차감과 디자인을 중시하는 분들에게 가장 적합합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Q6. G80 중고 리스 외에 GV80, G70, G90 모델도 비교 가능한가요?</div>
+        <div class="faq-answer">A: G80을 포함하여 Genesis G70, G90, GV70, GV80 등 전 모델에 대한 중고 리스 견적 비교가 가능합니다. 특히 G80과 GV80은 비교 대상 1순위입니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Q7. G80 리스 승계는 어떤 경우에 고려해야 하나요?</div>
+        <div class="faq-answer">A: G80 리스 승계는 기존 계약자의 잔여 리스 기간 동안 차량을 넘겨받는 방식입니다. 일반적으로 신규 리스보다 심사 기준이 완화되고, 초기 비용이 저렴하며, 남은 기간만 이용할 수 있어 단기 이용에 적합합니다.</div>
+      </div>
+    </section>
+
+    <!-- 섹션 7: 신뢰성 있는 외부 사이트 인용 -->
+    <section class="external-reference">
+      <h2>G80 중고차 리스 관련 신뢰성 있는 정보 출처</h2>
+      <p>G80 중고차 리스를 결정하기 전, 아래와 같은 공인된 기관이나 신뢰성 있는 정보원을 참고하여 신중하게 판단하시길 바랍니다.</p>
+      <ul>
+        <li><a href="https://namu.wiki/w/%EC%A0%9C%EB%84%A4%EC%8B%9C%EC%8A%A4%20G80" target="_blank">나무위키: 제네시스 G80</a> - G80 모델 연혁, 제원, 특징 등 상세 정보.</li>
+        <li><a href="https://www.car.go.kr/index.jsp" target="_blank">자동차민원 대국민포털 (국토교통부)</a> - 차량 등록 및 리스/렌트 관련 공식 정보 확인.</li>
+        <li><a href="https://www.fss.or.kr/main/index.jsp" target="_blank">금융감독원: 여신금융협회</a> - 리스 계약 관련 소비자 보호 규정 확인.</li>
+        <li><a href="https://www.genesis.com/kr/ko/models/g80-ev-electrified-g80.html" target="_blank">제네시스 공식 홈페이지</a> - G80 신차 가격 및 상세 제원.</li>
+        <li><a href="https://www.kofia.or.kr/main/index.do" target="_blank">여신금융협회</a> - 리스 상품 비교 및 리스 이용자 가이드.</li>
+      </ul>
+    </section>
+
+    <!-- 섹션 8: G80 중고 리스 업체 선정 가이드 (저렴한곳, 추천, 순위) -->
+    <section>
+      <h2>G80 중고 리스 저렴한곳 찾기: 업체 추천 및 순위 비교</h2>
+      <p>G80 중고 리스 업체를 선택할 때 '싼곳'을 기준으로만 결정하는 것은 위험할 수 있습니다. G80 리스는 단순히 가격 외에도 차량의 품질, 리스 계약 조건의 투명성, 초기 비용 조건, 리스 승계 용이성, 중도 해지 수수료 등을 종합적으로 고려해야 합니다. G80 리스 추천 업체를 찾을 때는 신뢰도를 최우선으로 해야 합니다.</p>
+
+      <h3>G80 리스 업체 선정 시 필수 체크리스트</h3>
+      <ul>
+        <li><strong>투명한 견적 비교:</strong> 리스사별 G80 리스 가격을 비교할 수 있도록 견적을 제공하는지 확인하세요. 단순히 월 납입금만 저렴하다고 싼곳이 아닐 수 있습니다.</li>
+        <li><strong>차량 품질 보증:</strong> 중고 G80 차량의 점검 상태(사고 유무, 침수 여부)를 투명하게 공개하는지 확인해야 합니다. 꼼꼼한 품질 검증 시스템이 있는 업체를 추천합니다.</li>
+        <li><strong>다양한 상품 보유:</strong> G80 리스 승계, 무보증 상품, 잔가 설정 옵션 등 다양한 상품을 보유한 업체가 고객에게 유리합니다.</li>
+        <li><strong>내돈내산 후기 확인:</strong> G80 중고 리스 후기, 내돈내산 후기 등을 참고하여 실제 이용자들의 만족도를 확인하세요.</li>
+      </ul>
+      <p>최근에는 G80 중고 리스 업체 순위를 비교하는 플랫폼이 활성화되고 있습니다. 이들은 리스사별 견적을 실시간으로 비교하고, G80 중고 리스 고객들에게 할인, 혜택, 상품권 등의 프로모션을 제공하기도 합니다. G80 리스 견적을 받을 때는 최소 3곳 이상의 업체를 비교해 보는 것이 좋습니다.</p>
+    </section>
+
+    <!-- 섹션 9: G80 중고 리스 2026년 시장 동향 및 전망 (정보성 텍스트 강화) -->
+    <section>
+      <h2>2026년 G80 중고차 리스 시장 동향과 전망 (심층 분석)</h2>
+      <p>2026년 현재 G80 중고 리스 시장은 전기차 모델(Electrified G80)의 등장과 함께 큰 변화를 겪고 있습니다. G80 신차 출고 대기 기간이 단축되면서 신차 리스 시장도 활발해졌지만, 여전히 합리적인 가격의 G80 중고 리스에 대한 수요는 높습니다.</p>
+
+      <h3>2026년 G80 중고차 리스 시장의 주요 변화</h3>
+      <ol>
+        <li><strong>EV 모델의 중고 리스 유입:</strong> G80 일렉트리파이드 모델이 중고차 시장에 유입되면서 중고 리스 상품이 증가하고 있습니다. 전기차 보조금 혜택을 받지 못했던 리스 차량들이 중고 리스로 전환되면서 합리적인 가격에 G80 EV를 경험할 수 있게 되었습니다.</li>
+        <li><strong>G80 페이스리프트 모델의 영향:</strong> 2024년 말 G80 페이스리프트 모델이 출시되면서 이전 연식 모델(2021년~2023년형)의 감가상각이 가속화되었습니다. 이는 중고차 리스 가격을 낮추는 요인으로 작용하여 G80 중고 리스 싼곳을 찾는 고객에게 유리해졌습니다.</li>
+        <li><strong>금리 변동성:</strong> 2026년 국내 금리 변동에 따라 리스 이자율이 달라집니다. G80 중고차 리스 업체별로 금리 할인을 제공하는 이벤트를 상시 진행하므로, 견적을 받을 때 이자율 조건을 꼼꼼히 확인해야 합니다.</li>
+        <li><strong>AI 기반 챗봇 상담:</strong> Gemini, ChatGPT 등 AI 기술을 활용한 챗봇 상담 서비스가 G80 중고 리스 시장에도 도입되어, 24시간 실시간으로 견적을 비교하고 궁금증을 해결하는 추세입니다.</li>
+      </ol>
+      <p>이러한 시장 변화 속에서 G80 중고 리스는 신차 구매의 대안을 넘어선 하나의 합리적인 소비 형태로 자리 잡았습니다. 특히 G80 2.5T Prestige 모델의 경우, 옵션이 풍부하고 연식도 비교적 짧아 중고 리스 상품 중 가장 인기가 많습니다. G80 중고 리스를 고려하신다면, 2026년도 시장 상황을 반영한 최신 견적을 받아보시는 것이 중요합니다.</p>
+    </section>
+
+    <!-- 섹션 10: 입력 필드 강화 (체류 시간 증대) -->
+    <section id="quote_form">
+      <h2>G80 중고차 리스 1:1 맞춤 견적 신청</h2>
+      <p>원하는 G80 모델과 조건을 입력해 주시면, 2026년 최신 시장 상황을 반영한 최적의 리스 견적을 무료로 비교해 드립니다. 개인/법인 관계없이 G80 리스 할인 혜택을 지금 바로 확인하세요.</p>
+      <form action="/submit-g80-quote" method="post">
+        <p><label for="name">이름</label><input type="text" id="name" name="name" required placeholder="예: 홍길동"></p>
+        <p><label for="phone">연락처</label><input type="tel" id="phone" name="phone" required placeholder="예: 010-1234-5678"></p>
+        <p><label for="model">희망 G80 모델</label>
+          <select id="model" name="model" required>
+            <option value="">모델 선택</option>
+            <option value="g80_2.5t">G80 2.5T</option>
+            <option value="g80_3.5t">G80 3.5T</option>
+            <option value="g80_ev">G80 일렉트리파이드</option>
+            <option value="other_genesis">GV80/G70 등 다른 제네시스 모델</option>
+          </select>
+        </p>
+        <p><label for="year">희망 연식 (G80 중고차 리스)</label>
+          <select id="year" name="year">
+            <option value="">연식 선택</option>
+            <option value="2024">2024년형</option>
+            <option value="2023">2023년형</option>
+            <option value="2022">2022년형</option>
+            <option value="2021">2021년형</option>
+          </select>
+        </p>
+        <p><label for="term">리스 기간 (개월)</label><input type="number" id="term" name="term" required placeholder="예: 36 (3년)"></p>
+        <p><label for="comment">추가 문의사항 (주행거리, 초기 비용 등)</label><textarea id="comment" name="comment" rows="4" placeholder="희망 주행거리(연간), 초기 비용 유무 등 상세 요청 사항을 적어주세요."></textarea></p>
+        <input type="submit" value="무료 G80 리스 견적 요청하기">
+      </form>
+    </section>
+
+    <!-- 섹션 11: 꼬리 키워드 및 마무리 정보 -->
+    <section>
+      <h2>G80 중고 리스 관련 꼬리 키워드 및 심화 정보</h2>
+      <p>G80 중고 리스는 단순히 차량을 빌리는 것을 넘어, G80의 가치를 합리적으로 누리는 방법입니다. G80 리스 승계, G80 중고차 시세, G80 장기 렌트와의 비교, G80 리스 만료 후 인수 절차 등 다양한 꼬리 키워드를 통해 G80 리스에 대한 모든 정보를 얻을 수 있습니다. 또한, G80 리스 업체별로 제공하는 신규 가입 혜택, 현금지원, 상품권 이벤트 등을 활용하면 더욱 저렴한 G80 리스를 이용할 수 있습니다. G80 중고 리스 업체 순위를 비교하고, 내돈내산 후기를 참고하여 가장 합리적인 G80을 찾아보세요.</p>
+    </section>
+  </main>
+
+  <!-- FAQ 토글 스크립트 (체류 시간 증대) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        item.querySelector('.faq-question').addEventListener('click', function() {
+          item.classList.toggle('active');
+        });
+      });
+    });
+  </script>
+  
